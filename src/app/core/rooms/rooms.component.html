@@ -1,2 +1,71 @@
-<p>rooms works!</p>
-<h1>{{rooms}}</h1>
+<div class="m-0 vh-100 row justify-content-center align-items-center">
+    <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
+        <div class="col-auto p-3">
+            <h1 class="text-center">ROOM RESERVATION APP</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="user">NOMBRE DE SALA:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-envelope"></i></span>
+                        <input id="user" formControlName="user" type="user" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="emailUser">UBICACION:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-calendar-days"></i></span>
+                        <select class="form-select" aria-label="">
+                            <option selected [value]="">(TOMORROW)</option>
+                            <option [value]="">(DAY AFTER TOMORROW)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="user">CAPACIDAD:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-envelope"></i></span>
+                        <input id="user" formControlName="user" type="user" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailUser">RECURSOS DISPONIBLES:</label>
+                    <div class="btn-group input-group mb-3" role="group">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                        <label class="btn btn-outline-light" for="btncheck1">PROYECTOR</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                        <label class="btn btn-outline-light" for="btncheck2">PIZARRA</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                        <label class="btn btn-outline-light" for="btncheck3">COMPUTADOR</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                        <label class="btn btn-outline-light" for="btncheck4">TELEVISOR</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailUser">ESTADO DE LA SALA:</label>
+                    <div class="btn-group input-group mb-3" role="group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <label class="btn btn-outline-light" for="btnradio1">ACTIVO</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-light" for="btnradio2">INACTIVO</label>
+                    </div>
+                </div>
+
+                <div class="d-grid text-center py-3">
+                    <button class="btn btn-primary btn-lg">CREAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
