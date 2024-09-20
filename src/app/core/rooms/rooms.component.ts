@@ -4,6 +4,7 @@ import {
   RequestService,
   Room,
 } from 'src/app/service/request/request-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rooms',
@@ -18,41 +19,31 @@ export class RoomsComponent implements OnInit {
   inputResources!: string;
   inputState!: boolean;
   form: FormGroup;
+  floors: number[] = [];
 
   constructor(private requestService: RequestService, private fb: FormBuilder) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       ubicacion: ['', Validators.required],
       capacidad: [0, [Validators.required, Validators.min(1)]],
-      rcs_proyector: [''],
-      rcs_pizarra: [''],
-      rcs_computador: [''],
-      rcs_tv: [''],
+      rcs_proyector: [false],
+      rcs_pizarra: [false],
+      rcs_computador: [false],
+      rcs_tv: [false],
       estado: [false],
     });
-
-    this.clearInputs();
+    this.floors = [1, 2, 3, 4];
   }
 
   ngOnInit(): void {
     this.requestService.getRooms().subscribe(
       (response: Room[]) => {
-        console.log(response);
         this.rooms = response;
       },
       (error) => {
         console.error('Error al obtener las salas:', error);
       }
     );
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      const dataForm = this.form.value;
-      console.log(dataForm);
-    } else {
-      console.log('Forulario no encontrado');
-    }
   }
 
   isSubmitDisable() {
@@ -63,25 +54,34 @@ export class RoomsComponent implements OnInit {
     );
   }
 
-  clearInputs() {
-    this.inputNameRoom = '';
-    this.inputLocationRoom = '';
-    this.inputCapacityRoom = 0;
-    this.inputResources = '';
-    this.inputState = true;
-  }
+  onSubmitCreateRoom() {
+    if (this.form.valid) {
+      const dataForm = this.form.value;
 
-  createRoom() {
-    const roomData = {
-      nombre_sala: this.inputNameRoom,
-      ubicacion: this.inputLocationRoom,
-      capacidad: this.inputCapacityRoom,
-      recursos_disponibles: this.inputResources,
-      estado: this.inputState,
-    };
+      const roomData = {
+        nombre_sala: dataForm.nombre,
+        ubicacion: 'piso ' + dataForm.ubicacion,
+        capacidad: dataForm.capacidad,
+        recursos_disponibles: [
+          { proyector: dataForm.rcs_proyector },
+          { pizarra: dataForm.rcs_pizarra },
+          { computador: dataForm.rcs_computador },
+          { tv: dataForm.rcs_tv },
+        ],
+        estado: dataForm.estado,
+      };
 
-    this.requestService.newRoom(roomData).subscribe((response) => {
-      console.log(response);
-    });
+      this.requestService.newRoom(roomData).subscribe((response) => {
+        console.log(response);
+        if (response) {
+          Swal.fire({
+            title: 'BUEN TRABAJO!',
+            text: 'SALA CREADA EXITOSAMENTE.',
+            icon: 'success',
+            timer: 3000,
+          });
+        }
+      });
+    }
   }
 }
