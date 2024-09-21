@@ -1,4 +1,4 @@
-const url = 'http://localhost:3999/';
+const url = 'http://localhost:3000/';
 
 export const environment = {
   apiGetRoom: url + 'getRooms',

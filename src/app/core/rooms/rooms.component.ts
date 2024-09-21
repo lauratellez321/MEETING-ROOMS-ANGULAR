@@ -13,11 +13,6 @@ import Swal from 'sweetalert2';
 })
 export class RoomsComponent implements OnInit {
   rooms: Room[] = [];
-  inputNameRoom!: string;
-  inputLocationRoom!: string;
-  inputCapacityRoom!: number;
-  inputResources!: string;
-  inputState!: boolean;
   form: FormGroup;
   floors: number[] = [];
 

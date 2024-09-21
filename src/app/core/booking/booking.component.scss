@@ -1,0 +1,24 @@
+.btn-submit-custom {
+  background-color: #ff6d18;
+  color: white;
+}
+
+.btn-submit-custom:hover {
+  background-color: #e05200;
+  color: white;
+}
+
+.btn-custom {
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black;
+}
+
+.btn-check:checked + .btn-custom {
+  background-color: #ff6d18;
+  color: white;
+}
+
+.btn-custom:focus {
+  box-shadow: none;
+}

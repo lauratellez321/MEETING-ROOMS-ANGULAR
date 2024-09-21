@@ -5,7 +5,7 @@ import { BookingComponent } from './core/booking/booking.component';
 
 const routes: Routes = [
   { path: '', component: RoomsComponent },
-  { path: 'room', component: BookingComponent },
+  { path: 'booking', component: BookingComponent },
 ];
 
 @NgModule({

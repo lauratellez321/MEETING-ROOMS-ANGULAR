@@ -39,7 +39,12 @@ export class RequestService {
   deleteRoom() {
     return this.httpClient.delete(environment.apiDeleteRoom);
   }
-  
+
+  getBooking(): Observable<Booking[]> {
+    return this.httpClient.get<Booking[]>(environment.apiGetBooking);
+  }
+
+  newBooking(bookingData: any) {
+    return this.httpClient.post(environment.apiPostBooking, bookingData);
+  }
 }
-
-
