@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { format, addDays } from 'date-fns';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   Booking,
@@ -15,14 +16,39 @@ export class BookingComponent implements OnInit {
   booking: Booking[] = [];
   form: FormGroup;
 
+  tomorrow = new Date();
+  tomorrowFormatted: any;
+  tomorrowFormattedData: string = '';
+  dayAfterTomorrow = new Date();
+  dayAfterTomorrowFormatted: any;
+  dayAfterTomorrowFormattedData: string = '';
+
   constructor(private fb: FormBuilder, private requestService: RequestService) {
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       fecha: ['', Validators.required],
       hora: ['', Validators.required],
       estado: [false, Validators.required],
-      datos_sala: ['', Validators.required],
     });
+    this.getDays();
+  }
+
+  getDays() {
+    this.tomorrow = addDays(new Date(), 1);
+    this.tomorrowFormatted = format(
+      this.tomorrow,
+      'MMMM d, yyyy'
+    ).toUpperCase();
+    this.tomorrowFormattedData = format(this.tomorrow, 'dd/MM/yyyy');
+    this.dayAfterTomorrow = addDays(new Date(), 2);
+    this.dayAfterTomorrowFormatted = format(
+      this.dayAfterTomorrow,
+      'MMMM d, yyyy'
+    ).toUpperCase();
+    this.dayAfterTomorrowFormattedData = format(
+      this.dayAfterTomorrow,
+      'dd/MM/yyyy'
+    );
   }
 
   onSubmit() {
@@ -54,6 +80,8 @@ export class BookingComponent implements OnInit {
   }
 
   onSubmitCreateBooking() {
+    console.log(this.form);
+
     if (this.form.valid) {
       const dataForm = this.form.value;
 

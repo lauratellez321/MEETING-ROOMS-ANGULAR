@@ -7,7 +7,7 @@
                     <label for="nameRoom">NOMBRE DE SALA:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
-                                class="fa-regular fa-hospital"></i></span>
+                                class="fa-regular fa-hospital icon-color"></i></span>
                         <input id="nameRoom" formControlName="nombre" type="text" class="form-control"
                             autocomplete="off" placeholder="DIRECCION GENERAL"
                             aria-describedby="inputGroup-sizing-default">
@@ -20,7 +20,7 @@
                     <label for="locationRoom">UBICACION:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
-                                class="fa-solid fa-location-dot"></i></span>
+                                class="fa-solid fa-location-dot icon-color"></i></span>
                         <select class="form-select" formControlName="ubicacion" aria-label="">
                             <option selected disabled>SELECCIONA UN PISO</option>
                             <option *ngFor="let item of floors" [value]="item">PISO {{item}}</option>
@@ -34,7 +34,7 @@
                     <label for="capacityRoom">CAPACIDAD:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
-                                class="fa-solid fa-people-group"></i></span>
+                                class="fa-solid fa-people-group icon-color"></i></span>
                         <input id="capacityRoom" formControlName="capacidad" type="number" class="form-control"
                             placeholder="0" aria-describedby="inputGroup-sizing-default" min="1">
                     </div>
@@ -47,7 +47,7 @@
                     <label for="resourcesEnb">RECURSOS DISPONIBLES:</label>
                     <div class="btn-group input-group mb-3" role="group">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
-                                class="fa-solid fa-computer"></i></span>
+                                class="fa-solid fa-computer icon-color"></i></span>
                         <input type="checkbox" class="btn-check" id="btncheck1" formControlName="rcs_proyector">
                         <label class="btn btn-outline-dark btn-custom" for="btncheck1">PROYECTOR</label>
 
@@ -66,7 +66,7 @@
                     <label for="emailUser">ESTADO DE LA SALA:</label>
                     <div class="btn-group input-group mb-3" role="group">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
-                                class="fa-solid fa-check"></i></span>
+                                class="fa-solid fa-check icon-color"></i></span>
                         <input type="radio" class="btn-check" formControlName="estado" [value]="true" id="btnradio1"
                             autocomplete="off" checked>
                         <label class="btn btn-outline-dark btn-custom" for="btnradio1">ACTIVO</label>
@@ -86,10 +86,10 @@
 
 </div>
 
-<div class="m-0 vh-100 row justify-content-center align-items-center">
+<!-- <div class="m-0 vh-100 row justify-content-center align-items-center">
     <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
         <div class="col-auto p-3">
             <p *ngFor="let item of rooms">{{item}}</p>
         </div>
     </div>
-</div>
+</div> -->
