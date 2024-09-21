@@ -1,1 +1,87 @@
-<p>booking works!</p>
+<div class="m-0 vh-100 row justify-content-center align-items-center">
+    <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
+        <div class="col-auto p-3">
+            <h1 class="text-center">CREA TU RESERVA</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmitCreateBooking()">
+                <div class="form-group">
+                    <label for="nameUser">NOMBRE DE USUARIO:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-user"></i></span>
+                        <input id="nameUser" formControlName="usuario" type="text" class="form-control"
+                            autocomplete="off" placeholder="" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div *ngIf="form.get('usuario')?.invalid && form.get('usuario')?.touched" class="text-danger">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dateBooking">FECHA:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-calendar-days"></i></span>
+                        <select class="form-select" formControlName="fecha" aria-label="">
+                            <option selected disabled></option>
+                        </select>
+                    </div>
+                    <div *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched" class="text-danger">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hourBooking">HORA:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-regular fa-clock"></i></span>
+                        <input id="hourBooking" formControlName="hora" type="number" class="form-control"
+                            placeholder="0" aria-describedby="inputGroup-sizing-default" min="1">
+                    </div>
+                    <div *ngIf="form.get('hora')?.invalid && form.get('hora')?.touched" class="text-danger">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">ESTADO DE LA RESERVA:</label>
+                    <div class="btn-group input-group mb-3" role="group">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-check"></i></span>
+                        <input type="radio" class="btn-check" formControlName="estado" [value]="true" id="btnradio1"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-dark btn-custom" for="btnradio1">ACTIVO</label>
+
+                        <input type="radio" class="btn-check" formControlName="estado" [value]="false" id="btnradio2"
+                            autocomplete="off">
+                        <label class="btn btn-outline-dark btn-custom" for="btnradio2">INACTIVO</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="infoRoom">DATOS DE LA SALA:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-regular fa-hospital"></i></span>
+                        <input id="infoRoom" formControlName="datos_sala" class="form-control" placeholder="0"
+                            aria-describedby="inputGroup-sizing-default" min="1">
+                    </div>
+                    <div *ngIf="form.get('datos_sala')?.invalid && form.get('datos_sala')?.touched" class="text-danger">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+
+                <div class="d-grid text-center py-3">
+                    <button type="submit" class="btn btn-submit-custom btn-lg" [disabled]="form.invalid">CREAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="m-0 vh-100 row justify-content-center align-items-center">
+    <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
+        <div class="col-auto p-3">
+            <p *ngFor="let item of booking">{{item}}</p>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,95 @@
-<p>rooms works!</p>
-<h1>{{rooms}}</h1>
+<div class="m-0 vh-100 row justify-content-center align-items-center">
+    <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
+        <div class="col-auto p-3">
+            <h1 class="text-center">CREA TU SALA</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmitCreateRoom()">
+                <div class="form-group">
+                    <label for="nameRoom">NOMBRE DE SALA:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-regular fa-hospital"></i></span>
+                        <input id="nameRoom" formControlName="nombre" type="text" class="form-control"
+                            autocomplete="off" placeholder="DIRECCION GENERAL"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="text-danger">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="locationRoom">UBICACION:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-location-dot"></i></span>
+                        <select class="form-select" formControlName="ubicacion" aria-label="">
+                            <option selected disabled>SELECCIONA UN PISO</option>
+                            <option *ngFor="let item of floors" [value]="item">PISO {{item}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="form.get('ubicacion')?.invalid && form.get('ubicacion')?.touched" class="text-danger">
+                        Este campo es obligatorio.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="capacityRoom">CAPACIDAD:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-people-group"></i></span>
+                        <input id="capacityRoom" formControlName="capacidad" type="number" class="form-control"
+                            placeholder="0" aria-describedby="inputGroup-sizing-default" min="1">
+                    </div>
+                    <div *ngIf="form.get('capacidad')?.invalid && form.get('capacidad')?.touched" class="text-danger">
+                        Debe ser mayor que 0.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="resourcesEnb">RECURSOS DISPONIBLES:</label>
+                    <div class="btn-group input-group mb-3" role="group">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-computer"></i></span>
+                        <input type="checkbox" class="btn-check" id="btncheck1" formControlName="rcs_proyector">
+                        <label class="btn btn-outline-dark btn-custom" for="btncheck1">PROYECTOR</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck2" formControlName="rcs_pizarra">
+                        <label class="btn btn-outline-dark btn-custom" for="btncheck2">PIZARRA</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3" formControlName="rcs_computador">
+                        <label class="btn btn-outline-dark btn-custom" for="btncheck3">COMPUTADOR</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck4" formControlName="rcs_tv">
+                        <label class="btn btn-outline-dark btn-custom" for="btncheck4">TELEVISOR</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailUser">ESTADO DE LA SALA:</label>
+                    <div class="btn-group input-group mb-3" role="group">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                class="fa-solid fa-check"></i></span>
+                        <input type="radio" class="btn-check" formControlName="estado" [value]="true" id="btnradio1"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-dark btn-custom" for="btnradio1">ACTIVO</label>
+
+                        <input type="radio" class="btn-check" formControlName="estado" [value]="false" id="btnradio2"
+                            autocomplete="off">
+                        <label class="btn btn-outline-dark btn-custom" for="btnradio2">INACTIVO</label>
+                    </div>
+                </div>
+
+                <div class="d-grid text-center py-3">
+                    <button type="submit" class="btn btn-submit-custom btn-lg" [disabled]="form.invalid">CREAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="m-0 vh-100 row justify-content-center align-items-center">
+    <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
+        <div class="col-auto p-3">
+            <p *ngFor="let item of rooms">{{item}}</p>
+        </div>
+    </div>
+</div>
